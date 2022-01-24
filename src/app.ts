@@ -7,6 +7,7 @@ import { MongoClient } from 'mongodb';
 import http from 'http';
 
 import getRoutes from "./getRoutes";
+import postRoutes from './postRoutes';
 
 const app = express();
 const port = 3000;
@@ -19,6 +20,7 @@ const client: MongoClient = new MongoClient(mongoUrl);
 
 app.use(express.json());
 app.use("/", getRoutes);
+app.use("/", postRoutes);
 
 async function healthCheck(): Promise<void> {
   return Promise.resolve();
