@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { Db, MongoClient, ObjectId } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 
 const getRoutes = Router();
 
