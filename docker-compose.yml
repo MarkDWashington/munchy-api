@@ -4,7 +4,16 @@ services:
   mongo:
     image: mongo
     ports:
-      - "27017:27017"
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: secret
+
+  munchy-api:
+    image: munchy-api
+    ports:
+      - 3000:3000
+    environment:
+      - username=root
+      - password=secret
+      - host=mongo

@@ -11,12 +11,13 @@ import getRoutes from "./getRoutes";
 import postRoutes from './postRoutes';
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
 const username = encodeURIComponent(process.env.username as string);
 const password = encodeURIComponent(process.env.password as string);
+const host = encodeURIComponent(process.env.host as string);
 
-const mongoUrl = `mongodb://${username}:${password}@localhost:27017/?authMechanism=DEFAULT`;
+const mongoUrl = `mongodb://${username}:${password}@${host}:27017/?authMechanism=DEFAULT`;
 const client: MongoClient = new MongoClient(mongoUrl);
 
 app.use(cors({origin: "*"}));
@@ -44,6 +45,10 @@ createTerminus(server, {
 });
 
 client.connect((err, db) => {
+  if (err) {
+    console.error(err);
+  }
+  
   app.locals.db = db;
   
   server.listen(port, () => {
