@@ -9,6 +9,7 @@ import http from 'http';
 
 import getRoutes from "./getRoutes";
 import postRoutes from './postRoutes';
+import { exit } from 'process';
 
 const app = express();
 const port = 3000;
@@ -47,6 +48,7 @@ createTerminus(server, {
 client.connect((err, db) => {
   if (err) {
     console.error(err);
+    exit()
   }
   
   app.locals.db = db;
